@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Room
+  - Weapon
+  - Wall
+  - Door
+  - Enemy
+  - Bullet
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -19,9 +25,9 @@ TagManager:
   - Item
   - Monster
   - Room
-  - 
-  - 
-  - 
+  - Mask
+  - Weapon
+  - Bullet
   - 
   - 
   - 
