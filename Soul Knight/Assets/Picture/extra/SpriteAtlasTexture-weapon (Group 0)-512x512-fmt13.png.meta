@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: 355378f6c80d9dd4f8fcce811ea8e448
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -855184856884504608
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_0
+  - first:
+      213: 6529793354849419440
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_1
+  - first:
+      213: 9043510115895941677
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_3
+  - first:
+      213: 4218405632916547750
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_4
+  - first:
+      213: 938944647046118836
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_5
+  - first:
+      213: 8813514552383952967
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_6
+  - first:
+      213: 5493978849811987871
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_2
+  - first:
+      213: 3848043892849512438
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_7
+  - first:
+      213: -260362030442008052
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_8
+  - first:
+      213: -5271360440279501675
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_9
+  - first:
+      213: 8667281003981223218
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_10
+  - first:
+      213: -2862748928314538938
+    second: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 18
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_0
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 29
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e71b1457e5c124f0800000000000000
+      internalID: -855184856884504608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_1
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 124
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0818cb57c7e9a50800000000000000
+      internalID: 6529793354849419440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_3
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 35
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2a11ac2980018d70800000000000000
+      internalID: 9043510115895941677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_4
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 21
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a86f74b299ca8a30800000000000000
+      internalID: 4218405632916547750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_5
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 61
+        width: 32
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd30f68e2dc70d00800000000000000
+      internalID: 938944647046118836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_6
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 73
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748d4951ac4ef4a70800000000000000
+      internalID: 8813514552383952967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_2
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 151
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9d7d82d7a88e3c40800000000000000
+      internalID: 5493978849811987871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_7
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 256
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ff0861688ff66530800000000000000
+      internalID: 3848043892849512438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_8
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 182
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c02318edc12036cf0800000000000000
+      internalID: -260362030442008052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_9
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 182
+        width: 28
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594f712cb9d58d6b0800000000000000
+      internalID: -5271360440279501675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_10
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 166
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235bac2e62e584870800000000000000
+      internalID: 8667281003981223218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-weapon (Group 0)-512x512-fmt13_11
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 423
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6448ea664097548d0800000000000000
+      internalID: -2862748928314538938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
