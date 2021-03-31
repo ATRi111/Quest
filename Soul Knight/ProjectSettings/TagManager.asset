@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Bullet
   - Obstacle
+  - Danmaku
+  - Tp
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Wall
   - Ground
   - Item
-  - Monster
+  - Enemy
   - Room
   - Mask
   - Weapon
@@ -60,7 +62,7 @@ TagManager:
   - name: Obstacle
     uniqueID: 2732044509
     locked: 0
-  - name: Monster
+  - name: Enemy
     uniqueID: 3636671915
     locked: 0
   - name: Player

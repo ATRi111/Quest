@@ -9,36 +9,36 @@ using UnityEngine.Audio;
 public class player : MonoBehaviour
 {
     [Header("属性")]
-    const int maxHP=7;
-    const int maxArmor =6;
-    const int maxEnergy =200;
-    float criticalRate=0.05f;//暴击率
-    float speed = 5f;
-    const int skill_cd =1000;//技能冷却（以deltatime的倍数计）
-    const int skilleffect_t =200;//技能效果时间
+    const int maxHP=7,maxArmor =6,maxEnergy =200;
+    float criticalRate=0.5f;//暴击率
+    float speed = 5f,speed_up = 7.5f;
+    float cd_skill =10, t_skill = 4,cd_armor=1,cd_damage=0.25f;//技能cd,技能时间,护甲回复cd,无敌时间
 
     [Header("状态")]
-    public int HP;
-    public int armor;
-    public int energy;
+    public int HP,armor,energy;
     public Vector2 pos;
     public Vector2 drct;//移动的方向
     public bool isMoving=false;
-    bool usingA=true;//是否在使用武器A
+    bool usingA=true;//在使用武器A
     bool skillPressed;//要求使用技能
-    public int skill_count=0;
-    public int skilleffect_count=0;
+    public bool skillOn=false,skillReady=true;
+    public float t_lastAttack,t_speedUp;//上次受到攻击到现在经过的时间,加速效果的时间
+    public float count_armor=0;//护甲回复计时器，受伤会使计时器增大
 
     [Header("系统")]
     Rigidbody2D rb;
-    BoxCollider2D coll;
     Animator anim;
     public GameObject Aweapon;
     public GameObject Bweapon;
     public GameObject skill_picture1, skill_picture2;
+    AudioSource bgm,fx_skill,fx_skillready,fx_hurt;
+    public int counter=0;
+
     void Start()
     {
         Initialize();
+        Aweapon.SendMessage("Pick");//拿取初始武器
+        bgm.Play();
     }
 
     void Update()
@@ -55,23 +55,34 @@ public class player : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon")&&Input.GetButtonDown("Pick"))
+        switch(collision.tag)
         {
-            if(usingA)
-            {
-                Aweapon.SendMessage("Discard");
-                Aweapon = collision.gameObject;
-                Aweapon.SendMessage("Pick");
-            }
-            else
-            {
-                Bweapon.SendMessage("Discard");
-                Bweapon = collision.gameObject;
-                Bweapon.SendMessage("Pick");
-            }
+            case "Weapon":
+                if(Input.GetButtonDown("Pick"))
+                    {
+                        if (usingA)
+                        {
+                            Aweapon.SendMessage("Discard");
+                            Aweapon = collision.gameObject;
+                            Aweapon.SendMessage("Pick");
+                        }
+                        else
+                        {
+                            Bweapon.SendMessage("Discard");
+                            Bweapon = collision.gameObject;
+                            Bweapon.SendMessage("Pick");
+                        }
+                    }
+                    break;
+            case "TP":
+                if (nameof(collision) == "tp" && Input.GetButtonDown("Pick"))
+                {
+
+                }
+                break;
+
         }
     }
-    
     void Initialize()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -79,7 +90,10 @@ public class player : MonoBehaviour
         HP = maxHP;
         armor = maxArmor;
         energy = maxEnergy;
-        Aweapon.SendMessage("Pick");
+        bgm = scene.FindAudio("bgm");
+        fx_skill = scene.FindAudio("fx_skill");
+        fx_skillready = scene.FindAudio("fx_skillready");
+        fx_hurt = scene.FindAudio("fx_hurt");
     }
     void InputCheck()
     {
@@ -91,31 +105,57 @@ public class player : MonoBehaviour
     void PhysicsCheck()
     {
         pos = transform.position;
+        if (isMoving) transform.localScale = new Vector3(drct.x < 0 ? -1 : 1, 1, 1);
+        anim.SetBool("run", isMoving);
     }
     void Move()
     {
-        if (isMoving) transform.localScale = new Vector3(drct.x < 0 ? -1 : 1, 1, 1);
-        rb.velocity = drct * speed;
-        anim.SetBool("run", isMoving);
+        rb.velocity = drct * (t_speedUp==0?speed:speed_up);
     }
     void Effect()//处理技能、状态等
     {
-        if (skill_count > 0) skill_count--;
-        else if(skillPressed)
+        t_lastAttack += Time.deltaTime;
+        if (count_armor > 0) count_armor -= Time.deltaTime;
+        else if(armor<maxArmor)
         {
-            skill_count = skill_cd;
-            skilleffect_count = skilleffect_t;
-
+            armor += 1;
         }
-        if (skilleffect_count > 0) skilleffect_count--;
-        skill_picture1.SetActive(skilleffect_count > 0);
-        skill_picture2.SetActive(skilleffect_count == 0 && skill_count == 0);
+        if (skillPressed&&skillReady)
+        {
+            skillOn = true;
+            skillReady = false;
+            Invoke(nameof(EndSkillEffect), t_skill);
+            Invoke(nameof(ResetSkill), cd_skill);
+            skill_picture1.SetActive(false);
+            skill_picture2.SetActive(true);
+            fx_skill.Play();
+        }
     }
-    public bool IsCritical() => Random.value <= criticalRate;
-    public bool IsUsingSkill() => skilleffect_count > 0;
-    public int tellEnergy() => energy;
-    public void CostEnergy(int cost)
+    void ResetSkill()
     {
-        energy -= cost;
+        counter++;
+        skill_picture1.SetActive(true);
+        skillReady = true;
     }
+    void EndSkillEffect()
+    {
+        skill_picture2.SetActive(false);
+        skillOn = false;
+    }
+    public void GetDamage(int damage)
+    {
+        t_lastAttack = 0;
+        count_armor = 3;
+        if (armor >= damage) armor -= damage;
+        else
+        {
+            damage -= armor; 
+            armor = 0;
+        }
+    }
+    public bool TellCritical() => Random.value <= criticalRate;
+    public bool TellSkillOn() => skillOn;
+    public int TellEnergy() => energy;
+    public void CostEnergy(int cost)=> energy -= cost;
+    public void SpeedUp(float time) => t_speedUp = time;
 }

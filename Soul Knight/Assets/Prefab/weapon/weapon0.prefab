@@ -99,11 +99,11 @@ MonoBehaviour:
   offset: {x: 0, y: -0.2, z: 0}
   bulletOffsetDistance: 0
   shootPressed: 0
-  cd_count: 0
+  shoot_count: 0
   used: 0
   angle: 0
   direction: {x: 0, y: 0}
-  user: {fileID: 0}
+  player: {fileID: 5508597242895961612, guid: 92dcc166303db8e47ab861d00ebf59a2, type: 3}
   bullet: {fileID: 1954006472136769165, guid: 952379de03051a141b9eb105ae3b5e21, type: 3}
 --- !u!61 &4283147292691954546
 BoxCollider2D:
@@ -114,8 +114,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 3905776765599357880}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_Material: {fileID: 6200000, guid: 98ac63981e821b44f99d1d3e6657d9b6, type: 2}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.3611111, y: 0}
