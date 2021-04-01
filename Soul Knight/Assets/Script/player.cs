@@ -1,22 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class player : MonoBehaviour
 {
     [Header("属性")]
-    const int maxHP=7,maxArmor =6,maxEnergy =200;
+    const short maxHP=7,maxArmor =6,maxEnergy =200;
     float criticalRate=0.5f;//暴击率
     float speed = 5f,speed_up = 7.5f;
-    float cd_skill =10, t_skill = 4,cd_armor=1,cd_damage=0.25f;//技能cd,技能时间,护甲回复cd,无敌时间
+    const float cd_skill =10, t_skill = 4,cd_armor=1,cd_damage=0.5f;//技能cd,技能时间,护甲回复cd,无敌时间
 
     [Header("状态")]
-    public int HP,armor,energy;
-    public Vector2 pos;
+    public short HP,armor,energy;
     public Vector2 drct;//移动的方向
     public bool isMoving=false;
     bool usingA=true;//在使用武器A
@@ -28,17 +21,17 @@ public class player : MonoBehaviour
     [Header("系统")]
     Rigidbody2D rb;
     Animator anim;
-    public GameObject Aweapon;
-    public GameObject Bweapon;
+    public GameObject Aweapon,Bweapon;
     public GameObject skill_picture1, skill_picture2;
-    AudioSource bgm,fx_skill,fx_skillready,fx_hurt;
-    public int counter=0;
+    public GameObject dia_pick, dia_tp;
+    AudioSource fx_skill,fx_skillready,fx_hurt;
+    public short counter=0;
+    public bool testMode;
 
     void Start()
     {
         Initialize();
         Aweapon.SendMessage("Pick");//拿取初始武器
-        bgm.Play();
     }
 
     void Update()
@@ -52,12 +45,18 @@ public class player : MonoBehaviour
         Move();
         Effect();
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Room")) t_lastAttack = -1f; //进入房间时获得无敌时间
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         switch(collision.tag)
         {
             case "Weapon":
+                counter++;
+                dia_pick.SetActive(true);
                 if(Input.GetButtonDown("Pick"))
                     {
                         if (usingA)
@@ -74,13 +73,21 @@ public class player : MonoBehaviour
                         }
                     }
                     break;
-            case "TP":
+            case "Tp":
+                dia_tp.SetActive(true);
                 if (nameof(collision) == "tp" && Input.GetButtonDown("Pick"))
                 {
 
                 }
                 break;
-
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Weapon":dia_tp.SetActive(false);break;
+            case "Tp":dia_tp.SetActive(false);break;
         }
     }
     void Initialize()
@@ -90,21 +97,20 @@ public class player : MonoBehaviour
         HP = maxHP;
         armor = maxArmor;
         energy = maxEnergy;
-        bgm = scene.FindAudio("bgm");
         fx_skill = scene.FindAudio("fx_skill");
         fx_skillready = scene.FindAudio("fx_skillready");
         fx_hurt = scene.FindAudio("fx_hurt");
+        if (testMode){armor = 1000;speed = 20f;speed_up = 30f;energy = 10000;}
     }
     void InputCheck()
     {
         drct = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        isMoving = drct.magnitude > 0;
+        isMoving = drct.magnitude > 0.1f;
         if (isMoving) drct =drct.normalized;
         skillPressed = Input.GetMouseButton(1);//右键使用技能
     }
     void PhysicsCheck()
     {
-        pos = transform.position;
         if (isMoving) transform.localScale = new Vector3(drct.x < 0 ? -1 : 1, 1, 1);
         anim.SetBool("run", isMoving);
     }
@@ -114,12 +120,15 @@ public class player : MonoBehaviour
     }
     void Effect()//处理技能、状态等
     {
-        t_lastAttack += Time.deltaTime;
-        if (count_armor > 0) count_armor -= Time.deltaTime;
-        else if(armor<maxArmor)
+        t_lastAttack += Time.fixedDeltaTime;
+        if(t_speedUp>0) t_speedUp -= Time.fixedDeltaTime;
+        if (count_armor > 0) count_armor -= Time.fixedDeltaTime;
+        else if (armor < maxArmor)
         {
-            armor += 1;
+            armor++;
+            count_armor = cd_armor;
         }
+
         if (skillPressed&&skillReady)
         {
             skillOn = true;
@@ -136,26 +145,40 @@ public class player : MonoBehaviour
         counter++;
         skill_picture1.SetActive(true);
         skillReady = true;
+        fx_skillready.Play();
     }
     void EndSkillEffect()
     {
         skill_picture2.SetActive(false);
         skillOn = false;
     }
-    public void GetDamage(int damage)
+    public void GetDamage(short damage)
     {
-        t_lastAttack = 0;
-        count_armor = 3;
-        if (armor >= damage) armor -= damage;
-        else
+        if (t_lastAttack > cd_damage)
         {
-            damage -= armor; 
-            armor = 0;
+            fx_hurt.Play();
+            t_lastAttack = 0f;
+            count_armor = 3f;
+            if (armor >= damage) armor -= damage;
+            else
+            {
+                damage -= armor;
+                armor = 0;
+                HP -= damage;
+                if(HP<= 0)
+                {
+                    speed = 0;
+                    anim.SetBool("dead", true);
+                    Destroy(Aweapon);Destroy(Bweapon);
+                    Invoke(nameof(Die), 2f);
+                }
+            }
         }
     }
+    protected void Die() => Destroy(this.gameObject);
+    public void CostEnergy(short cost) => energy -= cost;
+    public void SpeedUp(float time) => t_speedUp = time;
     public bool TellCritical() => Random.value <= criticalRate;
     public bool TellSkillOn() => skillOn;
-    public int TellEnergy() => energy;
-    public void CostEnergy(int cost)=> energy -= cost;
-    public void SpeedUp(float time) => t_speedUp = time;
+    public short TellEnergy() => energy;
 }

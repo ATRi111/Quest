@@ -1,17 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-
+using UnityEngine.SceneManagement;
 public class scene : MonoBehaviour
 {
+    protected GameObject door;
+    protected static AudioSource bgm;
     protected virtual void Start()
     {
-        Random.InitState((int)Time.time);
+        Random.InitState(System.DateTime.Now.Second);
+        door = GameObject.Find("door");
+        door.SetActive(false);
+        bgm = FindAudio("bgm");
     }
 
-    public static AudioSource FindAudio(string name)
+    public static AudioSource FindAudio(string name)=> GameObject.Find(name).GetComponent<AudioSource>();
+    public static void Exit()
     {
-        return GameObject.Find(name).GetComponent<AudioSource>();
+        bgm.Stop();
+        SceneManager.LoadScene("MENU");
     }
 }

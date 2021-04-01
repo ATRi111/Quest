@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class scene1 : scene
 {
-
+    protected override void Start()
+    {
+        base.Start();
+        bgm.Play();
+    }
 }

@@ -101,15 +101,21 @@ MonoBehaviour:
   HP: 0
   armor: 0
   energy: 0
-  pos: {x: 0, y: 0}
   drct: {x: 0, y: 0}
   isMoving: 0
-  skill_count: 0
-  skilleffect_count: 0
+  skillOn: 0
+  skillReady: 1
+  t_lastAttack: 0
+  t_speedUp: 0
+  count_armor: 0
   Aweapon: {fileID: 0}
   Bweapon: {fileID: 0}
   skill_picture1: {fileID: 0}
   skill_picture2: {fileID: 0}
+  dia_pick: {fileID: 0}
+  dia_tp: {fileID: 0}
+  counter: 0
+  testMode: 0
 --- !u!50 &5508597242895961649
 Rigidbody2D:
   serializedVersion: 4
@@ -125,7 +131,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
