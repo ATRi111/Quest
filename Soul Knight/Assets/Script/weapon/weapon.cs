@@ -82,7 +82,7 @@ public class weapon : MonoBehaviour
         used = false;
         GetComponent<Collider2D>().enabled = true;
     }
-    protected virtual void GenerateBullet() //如果时单发射击，不用重写此函数
+    protected virtual void GenerateBullet() //如果是单发射击，不用重写此函数
     {
         player.SendMessage("CostEnergy", cost);
         fx_bullet.Play();

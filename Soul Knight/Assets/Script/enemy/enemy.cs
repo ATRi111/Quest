@@ -4,14 +4,13 @@ public class enemy : MonoBehaviour
 {
     [Header("属性")]
     public string Name;
-    protected float speed = 3f, speed_up = 3f;
+    protected float speed = 2f, speed_up = 3f;
     protected short damage = 0;//触碰伤害
     protected float cd_action = 3f, t_action = 2f;//行动间隔,行动持续时间
     protected const float cd_move = 2f, t_move = 1f;//（脱战时）随机移动的间隔，随机移动的时间
 
     [Header("状态")]
     public short HP;
-    public Vector2 pos;
     public float rad;
     public Vector2 drct = Vector2.zero;//移动的方向
     public bool isMoving = false;
@@ -34,8 +33,8 @@ public class enemy : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        Invoke(nameof(Wake), Random.value);//生成时休眠一小段随机时间，使敌人的行动错开
-        this.gameObject.SetActive(false);
+        this.enabled = false;
+        Invoke(nameof(Wake), Random.Range(1f, 3f));//活动时间错开
     }
 
     void FixedUpdate()
@@ -47,15 +46,14 @@ public class enemy : MonoBehaviour
     protected void PhysicsCheck()
     {
         isMoving = rb.velocity.magnitude > 0.1f;
-        pos = transform.position;
-        r_player = (Vector2)player.transform.position - pos;
+        r_player = player.transform.position - transform.position;
         inBattle = r_player.magnitude < 8f;
         if (isMoving) transform.localScale = new Vector3(drct.x < 0 ? -1 : 1, 1, 1);
         anim.SetBool("run", isMoving);
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player")) collision.gameObject.SendMessage("GetDamage", damage);
+        if (collision.gameObject.CompareTag("Player")) collision.gameObject.SendMessage("GetDamage", damage);
     }
 
     void Act()
@@ -96,7 +94,6 @@ public class enemy : MonoBehaviour
             HP = 1000;
             speed = speed_up = 0;rb.velocity = Vector2.zero;
             GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<PolygonCollider2D>().enabled = false;
 
             Invoke(nameof(Die), 2f);
             if (room) room.SendMessage("EnemyDie");
@@ -121,5 +118,5 @@ public class enemy : MonoBehaviour
     void ResetMove() => moveReady = true;
     void EndMove() => drct = Vector2.zero;
     void ConnectToRoom(GameObject obj) => room = obj;//确定该敌人属于哪个房间，以确定开门的时机
-    void Wake() => this.gameObject.SetActive(true);
+    void Wake() => this.enabled=true;
 }

@@ -14,6 +14,7 @@ TagManager:
   - Danmaku
   - Tp
   - Box
+  - Collection
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ public class room : MonoBehaviour
         min = (short)((-n + 6) / 6 * max);
         w = transform.localScale.x;h = transform.localScale.y;
         x1 = transform.position.x - w*0.5f;y1 = transform.position.y - h*0.5f;
-        door = GameObject.Find("door");
+        door = GameObject.Find("map").transform.Find("door").gameObject;
         fx_door = scene.FindAudio("fx_door");
         GenerateEnemies();//加载场景时即生成敌人，等Player进入后再激活
     }
