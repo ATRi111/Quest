@@ -4,7 +4,7 @@ public class energypoint : MonoBehaviour
 {
     const int energy = 8;
     const float distance_absorb = 5f;
-    const float speed = 10f;
+    const float speed = 20f;
     Vector2 drct,r_player;
     public GameObject player;
     Rigidbody2D rb;
@@ -13,6 +13,8 @@ public class energypoint : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
+        this.enabled = false;
+        Invoke(nameof(Wake), 1f);//生成时休眠1秒
     }
 
     void Update()
@@ -26,8 +28,9 @@ public class energypoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.GetComponent<player>().CostEnergy(-energy);//player.SendMessage("CostEnergy", -energy);为什么不行？
+            player.GetComponent<player>().CostEnergy(-energy);
             Destroy(this.gameObject);
         }
     }
+    void Wake() => this.enabled = true;
 }

@@ -14,6 +14,7 @@ public class scene : MonoBehaviour
     }
     public static AudioSource FindAudio(string name)=> GameObject.Find(name).GetComponent<AudioSource>();
     public static GameObject FindFromUI(string name) => GameObject.Find("UI").transform.Find(name).gameObject;
+    public static GameObject FindFromAsset(string name) => GameObject.Find("asset").transform.Find(name).gameObject;
     public static void Restart()=> LoadScene(nextIndex);
     public static void NextLevel()
     {
@@ -21,4 +22,5 @@ public class scene : MonoBehaviour
         MoveGameObjectToScene(GameObject.FindWithTag("Player"), SceneManager.GetSceneByBuildIndex(nextIndex));
     }
     public static void Exit()=> LoadScene("MENU");
+    public static void GenerateEnergyPoint(Vector3 pos) => Instantiate(FindFromAsset("energypoint"), pos, new Quaternion());
 }

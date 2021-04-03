@@ -2010,7 +2010,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u6253\u5F00/\u5173\u95ED\u5E2E\u52A9 P  \n\u6682\u505C\u6E38\u620F ESC\n\u62FE\u53D6\u6B66\u5668
-    E\n\u4E22\u5F03\u6B66\u5668 G\n\u5C04\u51FB \u9F20\u6807\u5DE6\u51FB\n\u4F7F\u7528\u6280\u80FD
+    E\n\u5207\u6362\u6B66\u5668 Q\n\u5C04\u51FB \u9F20\u6807\u5DE6\u51FB\n\u4F7F\u7528\u6280\u80FD
     \u9F20\u6807\u53F3\u51FB"
 --- !u!1 &5362757562733590818
 GameObject:

@@ -2,6 +2,7 @@ public class bullet0 : bullet
 {
     void Start()
     {
-        damage = 3;
+        damage = 2;
+        criticalDamage = 5;
     }
 }

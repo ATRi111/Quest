@@ -1,21 +1,24 @@
 using UnityEngine;
+using static scene;
 
-//箱子用Enemy标签，但不继承enemy类
 public class box : MonoBehaviour
 {
-    public short HP=4;
+    public int HP=4;
     AudioSource fx_broke;
+    bool energypoint;//将会掉落一个能量点
 
     void Start()
     {
-        fx_broke = scene.FindAudio("fx_broke");
+        fx_broke = FindAudio("fx_broke");
+        energypoint = Random.value < 0.25f;
     }
 
-    public void GetDamage(short damage)
+    public void GetDamage(int damage)
     {
         HP -= damage;
         if (HP <= 0)
         {
+            if (energypoint) GenerateEnergyPoint(transform.position);
             fx_broke.Play();
             Destroy(this.gameObject);
         }

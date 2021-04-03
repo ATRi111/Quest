@@ -46,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -101,6 +102,7 @@ MonoBehaviour:
   HP: 0
   armor: 0
   energy: 0
+  coin: 0
   drct: {x: 0, y: 0}
   isMoving: 0
   skillOn: 0

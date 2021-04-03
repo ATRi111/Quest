@@ -1,24 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static scene;
 
 public class room : MonoBehaviour
 {
-    public short count_enemy;//敌人数量
+    public int count_enemy,count_box,n;//敌人、箱子数量和总数量
     public float x1, y1, w, h;//房间范围
-    short n;//敌人和箱子的总数
-    short min, max = 1;//随机生成id的范围(取不到max)
-    const short space= 169,length=13;//一个房间的格数，边长(除去边缘)
+    const int max = 3;//随机生成怪物id的范围(取不到max)
+    const int space= 169,length=13;//一个房间的格数，边长(除去边缘)
     GameObject door;//房间门
     AudioSource fx_door;
-    List<short> randomId=new List<short>();//负数表示箱子
     List<Vector3> randomPos=new List<Vector3>();
     List<GameObject> enemies=new List<GameObject>();
     Quaternion zeroQuaternion = Quaternion.Euler(0, 0, 0);
     
     void Start()
     {
-        n = (short)Random.Range(20, 41);
-        min = (short)((-n + 6) / 6 * max);
+        count_box = Random.Range(5, 31);
+        count_enemy = Random.Range(6, 9);
+        n = count_box + count_enemy;
         w = transform.localScale.x;h = transform.localScale.y;
         x1 = transform.position.x - w*0.5f;y1 = transform.position.y - h*0.5f;
         door = GameObject.Find("map").transform.Find("door").gameObject;
@@ -40,34 +40,42 @@ public class room : MonoBehaviour
     {
         Vector3 Order2Pos(int order)//格子编号转位置
         {
-            float x = order / length+1.5f, y = order % length+1.5f;
-            return new Vector3(x1+x * w / (length + 2), y1+y * h / (length + 2));
+            float x = order / length + 1.5f, y = order % length + 1.5f;
+            return new Vector3(x1 + x * w / (length + 2), y1 + y * h / (length + 2));
         }
-        List<bool> map = new List<bool>(space);//避免随机数重复
-        for (short i = 0; i < n; i++)
-        {
-            randomId.Add((short)Random.Range(min, max));
-            randomPos.Add(Order2Pos(Random.Range(0, space)));
-        }
-
+        int tempPos;
         string tempName;
-        for (short i = 0; i < n; i++)
+        bool[] map = new bool[space];//避免生成重复随机数
+        
+        for (int i = 0; i < n+1; i++) //多生成一个随机位置，用于生成宝箱
         {
-            if (randomId[i] < 0) enemies.Add(GameObject.Instantiate(GameObject.Find("asset").transform.Find("box").gameObject, randomPos[i], zeroQuaternion));
-            else
+            for (; ; )
             {
-                tempName = "enemy" + randomId[i].ToString();
-                enemies.Add(GameObject.Instantiate(GameObject.Find("asset").transform.Find(tempName).gameObject, randomPos[i], zeroQuaternion));
-                count_enemy++;
-            } 
+                tempPos = Random.Range(0, space);
+                if (!map[tempPos]) { map[tempPos] = true;break; }
+            }
+            randomPos.Add(Order2Pos(tempPos));
+        }
+        for (int i = 0; i < count_box; i++)
+        {
+            enemies.Add(Instantiate(FindFromAsset("box"), randomPos[i], zeroQuaternion));
+        }
+        for (int i = count_box; i < n; i++)
+        {
+            tempName = "enemy" + Random.Range(0,max).ToString();//怪物的对象名只有最后的数字不同
+            enemies.Add(Instantiate(FindFromAsset(tempName), randomPos[i], zeroQuaternion));
         }
     }
     void ActivateEnemies()
     {
-        for (short i = 0; i < n; i++)
+        for (int i = 0; i < count_box; i++)
+        {
+            enemies[i].SetActive(true);//箱子不需要连接到房间
+        }
+        for (int i = count_box; i < n; i++)
         {
             enemies[i].SetActive(true);
-            if(randomId[i]>=0) enemies[i].SendMessage("ConnectToRoom", this.gameObject);
+            enemies[i].SendMessage("ConnectToRoom", this.gameObject);
         }
     }
     void GetOut()//离开房间
