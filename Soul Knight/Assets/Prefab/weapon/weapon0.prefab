@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3905776765599357882
 Transform:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1815857185
   m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8813514552383952967, guid: 355378f6c80d9dd4f8fcce811ea8e448, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,13 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0.2, y: -0.2, z: 0}
-  bulletOffsetDistance: 0
   count_shoot: 0
   isEquipped: 0
   angle: 0
   direction: {x: 0, y: 0}
   bullet: {fileID: 1954006472136769165, guid: 952379de03051a141b9eb105ae3b5e21, type: 3}
-  fx_weapon: {fileID: 0}
   counter: 0
   testMode: 0
 --- !u!61 &4283147292691954546
@@ -120,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013110638, y: 0.00010430813}
+  m_Offset: {x: 0.0100441575, y: -0.00000011920929}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,5 +129,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3906446, y: 0.77613854}
+  m_Size: {x: 1.4017664, y: 0.77902865}
   m_EdgeRadius: 0

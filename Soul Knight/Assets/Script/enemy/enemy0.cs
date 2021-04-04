@@ -6,17 +6,14 @@ public class enemy0 : enemy
     {
         base.Start();
         Name = "野猪";
-        speed_up = 4f;
+        speed= 3f;
         HP = 10;
         damage = 2;
+        sight = 0f;//不会主动攻击
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.SendMessage("GetDamage", damage);
-            actionIng = false;//攻击玩家一次后结束行动
-        }   
+            collision.gameObject.SendMessage("GetDamage", damage); 
     }
-
 }

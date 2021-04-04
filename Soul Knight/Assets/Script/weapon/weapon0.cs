@@ -6,13 +6,11 @@ public class weapon0 : weapon
     protected override void Start()
     {
         base.Start();
-        Pick();
-        Name = "Ñ©ºü";
-        cd_shoot = 200;
-        bulletOffsetDistance = 0.5f;
+        text = "Ñ©ºü";
+        cd_shoot = 250;
         cost = 0;
         deflectLevel = 5f;
-        fx_weapon = GameObject.Find("fx_weapon0").GetComponent<AudioSource>();
+        fx_weapon = scene.FindAudio("fx_weapon0");
         if (testMode) cd_shoot = 5;
     }
 }

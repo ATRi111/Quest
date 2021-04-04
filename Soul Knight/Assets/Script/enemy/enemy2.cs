@@ -7,7 +7,7 @@ public class enemy2 : enemy
     {
         base.Start();
         Name = "»¨";
-        HP = 10;
+        HP = 12;
         speed = speed_up = 0;
     }
     protected override void DoAct()

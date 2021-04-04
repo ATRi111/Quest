@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class enemy1 : enemy
 {
-
     protected override void Start()
     {
         base.Start();
         Name = "∏Á≤º¡÷";
-        HP = 10;
+        HP = 16;
     }
 
     protected override void DoAct()

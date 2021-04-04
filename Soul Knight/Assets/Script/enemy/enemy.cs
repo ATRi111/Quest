@@ -25,7 +25,7 @@ public class enemy : MonoBehaviour
     protected bool moveReady = true;//(脱战时)准备好随机移动
     protected float count_action = 0f;//行动计时器
     protected bool hasAttacked;//一次行动中发射过弹幕了
-    int num_energypoint=0;//将要掉落能量点的个数
+    protected int num_energypoint=0;//将要掉落能量点的个数
 
     [Header("系统")]
     Rigidbody2D rb;
@@ -75,8 +75,7 @@ public class enemy : MonoBehaviour
             if (!isMoving && moveReady)//脱战时随机移动
             {
                 moveReady = false;
-                angle = Random.Range(0f, 360f);
-                direction = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
+                direction = new Vector2(Random.Range(1f, -1f), Random.Range(1f, -1f)).normalized;//比用随机角度算更快
                 Invoke(nameof(ResetMove), cd_move);
                 Invoke(nameof(EndMove), t_move);
             }
@@ -109,7 +108,7 @@ public class enemy : MonoBehaviour
     protected virtual void DoAct()
     {
         direction = r_player.normalized;
-        angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        angle = Direction2Angle(direction);
         if (count_action < 1f) rb.velocity = direction * speed_up;
         else rb.velocity = Vector3.zero;
     }
@@ -124,25 +123,17 @@ public class enemy : MonoBehaviour
             if (room) room.SendMessage("EnemyDie");
             anim.SetBool("dead", true);
             Invoke(nameof(Die), 2f);
-            if (num_energypoint == 1) GenerateEnergyPoint(pos);
-            else
-            {
-                //
-            }
+            GenerateEnergyPoint(pos);
         }
     }
     protected virtual void GenerateDanmaku() //不能发射弹幕的敌人禁止使用
     {
-        direction = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));//改变angle以改变direction
+        direction = Angle2Direction(angle);//改变angle以改变direction
         tempDanmaku = GameObject.Instantiate(danmaku, transform.position, Quaternion.Euler(0,0,90f-angle));
         tempRb = tempDanmaku.GetComponent<Rigidbody2D>();
         tempRb.velocity = direction * speed_danmaku;
     }
-    void Die()
-    {
-        Destroy(this.gameObject);
-    }
-
+    void Die()=> Destroy(this.gameObject);
     void ConnectToRoom(GameObject obj) => room = obj;//确定该敌人属于哪个房间，以确定开门的时机
     void Wake() => this.enabled=true;
 }

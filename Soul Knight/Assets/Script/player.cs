@@ -1,29 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 using static scene;
+using static UnityEngine.PlayerPrefs;
 
 public class player : MonoBehaviour
 {
     [Header("属性")]
     const int maxHP=7,maxArmor =6,maxEnergy =200;
     float rate_critical=0.05f;//暴击率
-    float speed = 6f,speed_up = 9f;
-    const float cd_skill =10, t_skill = 4,cd_armor=1,cd_damage=1f;//技能cd,技能时间,护甲回复cd,无敌时间
+    const float speed = 6f,speed_up = 12f;
+    const float cd_skill =20f, t_skill = 5f,cd_armor=2f,cd_damage=1f;//技能cd,技能时间,护甲回复cd,无敌时间
 
     [Header("状态")]
     public int HP,armor,energy,coin;
     Vector2 direction;//移动的方向
     bool isMoving=false;
-    bool skillPressed,pickPressed;
+    public bool skillPressed,pickPressed;
     public bool skillOn=false,skillReady=true;
-    public float t_lastAttack,t_speedUp;//上次受到攻击到现在经过的时间,加速效果的时间
-    public float count_armor=0;//护甲回复计时器，受伤会使计时器增大
+    float t_lastAttack,t_speedUp;//上次受到攻击到现在经过的时间,加速效果的时间
+    float count_armor=0;//护甲回复计时器，受伤会使计时器增大
     Text text_HP, text_armor, text_energy, text_coin;
     Image image_HP, image_armor, image_energy;
 
     [Header("系统")]
     Rigidbody2D rb;
-    Animator anim;
+    public Animator anim;
     public GameObject Aweapon, Bweapon;
     GameObject pic_skillon, pic_skillready,dia_tp;
     AudioSource fx_skill,fx_skillready,fx_hurt,fx_energy,fx_switch;
@@ -32,10 +33,7 @@ public class player : MonoBehaviour
 
     void Start()
     {
-        Aweapon = FindFromAsset("weapon0");
-        Bweapon = FindFromAsset("weapon1");
         Initialize();
-        if (testMode) { speed = 20f; speed_up = 30f; }
     }
 
     void Update()
@@ -46,8 +44,8 @@ public class player : MonoBehaviour
     private void FixedUpdate()
     {
         PhysicsCheck();
-        Move();
         Effect();
+        Move();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -68,7 +66,7 @@ public class player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        switch(collision.tag)
+        switch (collision.tag)
         {
             case "Weapon":
                 if(pickPressed)
@@ -87,10 +85,15 @@ public class player : MonoBehaviour
                         Bweapon.SendMessage("Pick");
                     }
                 }
-                ;break;
+                break;
             case "Tp":
-                if (pickPressed) NextLevel(); break;
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    SaveData(); NextLevel(); 
+                }
+                break;
         }
+        if (!Input.GetKeyDown(KeyCode.E)) pickPressed = false;
     }
 
     void Initialize()
@@ -100,9 +103,6 @@ public class player : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        HP = maxHP;
-        armor = maxArmor;
-        energy = maxEnergy;
         dia_tp = FindFromUI("dia_tp"); 
         pic_skillon = FindFromUI("pic_skillon"); 
         pic_skillready = FindFromUI("pic_skillready");
@@ -117,7 +117,8 @@ public class player : MonoBehaviour
         text_coin = FindText("coin");
         image_HP = FindImage("HP");
         image_armor = FindImage("armor");
-        image_energy = FindImage("energy"); 
+        image_energy = FindImage("energy");
+        LoadData();
     }
     void InputCheck()
     {
@@ -126,7 +127,7 @@ public class player : MonoBehaviour
         isMoving = direction.magnitude > 0.1f;
         if (isMoving) direction =direction.normalized;
         skillPressed = Input.GetMouseButton(1);//右键使用技能
-        if(Input.GetKeyDown(KeyCode.Q))//Q键切换武器
+        if(Input.GetKeyDown(KeyCode.Q)&&!Input.GetMouseButton(0))//Q键切换武器，射击时不能切换
         {
             fx_switch.Play();
             if (Aweapon.activeSelf)
@@ -150,8 +151,8 @@ public class player : MonoBehaviour
     }
     void Move()
     {
-        rb.velocity = direction * (t_speedUp==0?speed:speed_up);
-        if (rb.velocity.magnitude == 0) rb.velocity = new Vector2(0.01f, 0);//确保进行碰撞检测
+        rb.velocity = direction * (t_speedUp>0? speed_up:speed);
+        if (rb.velocity == Vector2.zero) rb.velocity = new Vector2(0, 0.01f);//确保进行碰撞检测
     }
     void Effect()//处理技能、状态等
     {
@@ -189,7 +190,7 @@ public class player : MonoBehaviour
         pic_skillon.SetActive(false);
         skillOn = false;
     }
-
+    
     public void GetDamage(int damage)
     {
         if (damage < 0) 
@@ -202,7 +203,7 @@ public class player : MonoBehaviour
         {
             fx_hurt.Play();
             t_lastAttack = 0f;
-            count_armor = 3f;
+            count_armor = 4f;
             if (armor >= damage) armor -= damage;
             else
             {
@@ -212,7 +213,8 @@ public class player : MonoBehaviour
                 if(HP<= 0)
                 {
                     GameObject.Find("UI").SendMessage("Mute");
-                    speed = 0;
+                    rb.velocity = Vector3.zero;
+                    this.enabled = false;
                     anim.SetBool("dead", true);
                     Destroy(Aweapon);Destroy(Bweapon);
                     Invoke(nameof(Die), 3f);
@@ -245,4 +247,31 @@ public class player : MonoBehaviour
     public bool TellCritical() => Random.value <= rate_critical;
     public bool TellSkillOn() => skillOn;
     public int TellEnergy() => energy;
+
+    void SaveData()
+    {
+        SetString("Aweapon", Aweapon.name);
+        SetString("Bweapon", Bweapon.name);
+        SetInt("HP", HP);
+        SetInt("armor", armor);
+        SetInt("energy", energy);
+        SetInt("coin", coin);
+        SetInt("usingA", Aweapon.activeSelf ? 1 : 0);
+    }
+    void LoadData()
+    {
+        Aweapon = FindFromAsset(GetString("Aweapon"));
+        Bweapon = FindFromAsset(GetString("Bweapon"));
+        if (GetInt("usingA") == 1) Aweapon.SetActive(true);
+        else Bweapon.SetActive(true);
+        HP = GetInt("HP");
+        armor = GetInt("armor");
+        energy = GetInt("energy");
+        coin = GetInt("coin");
+        Aweapon.GetComponent<weapon>().Pick();
+        Bweapon.GetComponent<weapon>().Pick();
+        GetDamage(0);
+        SpendCoin(0);
+        CostEnergy(0);
+    }
 }

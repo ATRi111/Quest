@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5508597242895961615}
   - component: {fileID: 5508597242895961614}
-  - component: {fileID: 5508597242895961613}
   - component: {fileID: 5508597242895961649}
-  - component: {fileID: 5508597242895961648}
+  - component: {fileID: 5508597242895961613}
   - component: {fileID: 5508597242895961650}
+  - component: {fileID: 3286150047120524827}
   m_Layer: 7
   m_Name: knight
   m_TagString: Player
@@ -87,33 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5508597242895961613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5508597242895961612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae94562aa8892746a8c79a6e085f947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 0
-  armor: 0
-  energy: 0
-  coin: 0
-  drct: {x: 0, y: 0}
-  isMoving: 0
-  skillOn: 0
-  skillReady: 1
-  t_lastAttack: 0
-  t_speedUp: 0
-  count_armor: 0
-  Aweapon: {fileID: 0}
-  Bweapon: {fileID: 0}
-  counter: 0
-  testMode: 0
 --- !u!50 &5508597242895961649
 Rigidbody2D:
   serializedVersion: 4
@@ -131,36 +104,36 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5508597242895961648
-BoxCollider2D:
+--- !u!114 &5508597242895961613
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5508597242895961612}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 98ac63981e821b44f99d1d3e6657d9b6, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0166682, y: -0.058233857}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3888888, y: 1.6111112}
-    newSize: {x: 1.3888888, y: 1.6111112}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.75}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae94562aa8892746a8c79a6e085f947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  armor: 0
+  energy: 0
+  coin: 0
+  skillOn: 0
+  skillReady: 1
+  t_lastAttack: 0
+  t_speedUp: 0
+  count_armor: 0
+  anim: {fileID: 0}
+  Aweapon: {fileID: 0}
+  Bweapon: {fileID: 0}
+  counter: 0
+  testMode: 0
 --- !u!95 &5508597242895961650
 Animator:
   serializedVersion: 3
@@ -180,3 +153,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &3286150047120524827
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508597242895961612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0054396987, y: -0.067088574}
+  serializedVersion: 2
+  m_Radius: 0.41027707

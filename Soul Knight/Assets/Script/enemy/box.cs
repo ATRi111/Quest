@@ -10,7 +10,7 @@ public class box : MonoBehaviour
     void Start()
     {
         fx_broke = FindAudio("fx_broke");
-        energypoint = Random.value < 0.25f;
+        energypoint = Random.value < 0.125f;
     }
 
     public void GetDamage(int damage)

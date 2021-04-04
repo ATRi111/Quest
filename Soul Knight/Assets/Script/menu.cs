@@ -1,31 +1,41 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEngine.SceneManagement.SceneManager;
+using UnityEngine.UI;
 using static scene;
+using static UnityEngine.PlayerPrefs;
+
 public class menu : MonoBehaviour
 {
     GameObject pausemenu;
     GameObject help;
-    public AudioMixer Mixer;
+    public AudioMixer mixer;
+    public GameObject panel;
+    Text textbox;
     AudioSource fx_menu;
-    bool inGame;//处于游戏中（而不是开始界面,开始界面没有UI对象）
+    int sceneIndex;
 
     private void Start()
     {
-        inGame = GetActiveScene().buildIndex>0;
-        if (inGame)
+        sceneIndex = GetActiveScene().buildIndex;
+        if (sceneIndex>0)
         {
-            Mixer.SetFloat("main", -5);
-            Mixer.SetFloat("bgm", -20);
-            Mixer.SetFloat("fx", -20);
+            if(sceneIndex==1)
+            {
+                ResetData();
+                mixer.SetFloat("main", -5);
+                mixer.SetFloat("bgm", -20);
+                mixer.SetFloat("fx", -20);
+            }
             pausemenu = FindFromUI("pausemenu");
             help = FindFromUI("help");
             fx_menu = FindAudio("fx_menu");
+            textbox = panel.transform.Find("Text").GetComponent<Text>();
         }
     }
     private void Update()
     {
-        if (inGame)
+        if (sceneIndex>0)
         {
             if(Input.GetKeyDown(KeyCode.Escape)&&!help.activeSelf)
                 if (pausemenu.activeSelf) Continue(); 
@@ -61,8 +71,25 @@ public class menu : MonoBehaviour
         Time.timeScale = 1;
         help.SetActive(false);
     }
-    public void SetmainVolume(float volume) => Mixer.SetFloat("main", -volume*volume/125f);
-    public void SetfxVolume(float volume) => Mixer.SetFloat("fx", -volume * volume / 125f);
-    public void SetbgmVolume(float volume) => Mixer.SetFloat("bgm", -volume * volume / 125f);
-    public void Mute() => Mixer.SetFloat("main", -80);
+    public void SetmainVolume(float volume) => mixer.SetFloat("main", -volume*volume/125f);
+    public void SetfxVolume(float volume) => mixer.SetFloat("fx", -volume * volume/125f);
+    public void SetbgmVolume(float volume) => mixer.SetFloat("bgm", -volume * volume/125f);
+    public void Mute() => mixer.SetFloat("main", -80);
+    public void OpenText(string text)
+    {
+        panel.SetActive(true);
+        textbox.text = text;
+    }
+    public void CloseText() => panel.SetActive(false);
+
+    public void ResetData()
+    {
+        SetString("Aweapon", "weapon0");
+        SetString("Bweapon", "weapon1");
+        SetInt("HP", 7);
+        SetInt("armor", 6);
+        SetInt("energy", 200);
+        SetInt("coin", 0);
+        SetInt("usingA", 1);
+    }
 }

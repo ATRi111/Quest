@@ -6,8 +6,7 @@ public class weapon1 : weapon
     protected override void Start()
     {
         base.Start();
-        Pick();
-        Name = "ö±µ¯³å·æÇ¹";
+        text = "ö±µ¯³å·æÇ¹";
         cd_shoot = 500;
         cost = 2;
         deflectLevel = 10f;

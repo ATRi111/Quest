@@ -6,9 +6,9 @@ public class room : MonoBehaviour
 {
     public int count_enemy,count_box,n;//敌人、箱子数量和总数量
     public float x1, y1, w, h;//房间范围
-    const int max = 3;//随机生成怪物id的范围(取不到max)
+    const int max = 3;
     const int space= 169,length=13;//一个房间的格数，边长(除去边缘)
-    GameObject door;//房间门
+    GameObject door,takarabox;
     AudioSource fx_door;
     List<Vector3> randomPos=new List<Vector3>();
     List<GameObject> enemies=new List<GameObject>();
@@ -24,6 +24,7 @@ public class room : MonoBehaviour
         door = GameObject.Find("map").transform.Find("door").gameObject;
         fx_door = scene.FindAudio("fx_door");
         GenerateEnemies();//加载场景时即生成敌人，等Player进入后再激活
+        takarabox = Instantiate(FindFromAsset("takarabox"), randomPos[n], zeroQuaternion);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -62,7 +63,7 @@ public class room : MonoBehaviour
         }
         for (int i = count_box; i < n; i++)
         {
-            tempName = "enemy" + Random.Range(0,max).ToString();//怪物的对象名只有最后的数字不同
+            tempName = "enemy" + Random.Range(0,max+1).ToString();//怪物的对象名只有最后的数字不同
             enemies.Add(Instantiate(FindFromAsset(tempName), randomPos[i], zeroQuaternion));
         }
     }
@@ -80,6 +81,7 @@ public class room : MonoBehaviour
     }
     void GetOut()//离开房间
     {
+        takarabox.SetActive(true);//生成宝箱
         door.SetActive(false);//开门
         fx_door.Play();
         Destroy(this.gameObject);
