@@ -4,17 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Room
-  - Weapon
-  - Wall
-  - Door
-  - Enemy
-  - Bullet
-  - Obstacle
-  - Danmaku
-  - Tp
-  - Box
   - Collection
+  - Teleport
+  - Edge
   layers:
   - Default
   - TransparentFX
@@ -22,16 +14,16 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacle
-  - Player
-  - Wall
+  - 
+  - 
   - Ground
-  - Box
-  - Enemy
-  - Room
-  - Mask
-  - Weapon
-  - Bullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -52,24 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 4082145563
+  - name: background
+    uniqueID: 2304975237
     locked: 0
-  - name: Wall
-    uniqueID: 1055195185
+  - name: midground
+    uniqueID: 2926090565
     locked: 0
-  - name: Door
-    uniqueID: 2009566215
-    locked: 0
-  - name: Obstacle
-    uniqueID: 2732044509
-    locked: 0
-  - name: Enemy
-    uniqueID: 3636671915
-    locked: 0
-  - name: Player
-    uniqueID: 3512015011
-    locked: 0
-  - name: Item
-    uniqueID: 1815857185
+  - name: foreground
+    uniqueID: 1723076905
     locked: 0
