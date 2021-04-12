@@ -27,7 +27,7 @@ public class coinpoint: MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.GetComponent<player>().SpendCoin(-coin);
+            player.GetComponent<CPlayer>().SpendCoin(-coin);
             Destroy(this.gameObject);
         }
     }

@@ -123,13 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dffb7350bddd5644ac47bb1a48a0546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0.2, y: -0.2, z: 0}
-  bulletOffsetDistance: 0.5
-  count_shoot: 0
-  isEquipped: 0
+  m_Offset: {x: 0.2, y: -0.2, z: 0}
+  t_Shoot: 0
+  b_Equipped: 0
   angle: 0
-  direction: {x: 0, y: 0}
-  bullet: {fileID: 1954006472136769165, guid: 3093d28b918bd45458147fc4e232147b, type: 3}
-  fx_weapon: {fileID: 0}
-  counter: 0
-  testMode: 0
+  m_Direction: {x: 0, y: 0}
+  Bullet: {fileID: 1954006472136769165, guid: 3093d28b918bd45458147fc4e232147b, type: 3}

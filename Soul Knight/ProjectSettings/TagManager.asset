@@ -28,10 +28,10 @@ TagManager:
   - Ground
   - Box
   - Enemy
-  - Room
+  - Bullet
   - Mask
   - Weapon
-  - Bullet
+  - 
   - 
   - 
   - 

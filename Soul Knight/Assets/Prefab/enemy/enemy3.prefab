@@ -146,11 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e092a7e815570145af0af3f5cc25497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  HP: 0
-  direction: {x: 0, y: 0}
-  angle: 0
-  danmaku: {fileID: 653169883246279626, guid: bfa57a5cca032994884176e18cceb451, type: 3}
+  NAME: 
+  m_Direction: {x: 0, y: 0}
+  m_Angle: 0
+  Danmaku: {fileID: 653169883246279626, guid: bfa57a5cca032994884176e18cceb451, type: 3}
 --- !u!95 &7432454431861339956
 Animator:
   serializedVersion: 3

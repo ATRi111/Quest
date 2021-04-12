@@ -3,7 +3,8 @@ guid: 8868f64446da5454f8762a70281ed5dc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Danmaku: {fileID: 653169883246279626, guid: 0e4b39ab590179345816487917c0ee05, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

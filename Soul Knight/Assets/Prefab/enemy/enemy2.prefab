@@ -165,8 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8868f64446da5454f8762a70281ed5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  HP: 0
-  direction: {x: 0, y: 0}
-  angle: 0
-  danmaku: {fileID: 653169883246279626, guid: 0e4b39ab590179345816487917c0ee05, type: 3}
+  NAME: 
+  m_Direction: {x: 0, y: 0}
+  m_Angle: 0
+  Danmaku: {fileID: 653169883246279626, guid: 0e4b39ab590179345816487917c0ee05, type: 3}

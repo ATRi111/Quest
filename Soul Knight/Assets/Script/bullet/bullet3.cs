@@ -1,16 +1,14 @@
 using UnityEngine;
-public class bullet3 : bullet
+public class bullet3 : CBullet
 {
-    
     void Start()
     {
-        damage = 2;
-        criticalDamage = 4;
+        Damage = 4;
+        CriticalDamage = 8;
     }
-
     public void DamageUp(float rate)
     {
-        damage = (int)(rate * damage);
-        criticalDamage = (int)(rate * criticalDamage);
+        Damage = (int)(rate * Damage);
+        CriticalDamage = (int)(rate * CriticalDamage);
     }
 }

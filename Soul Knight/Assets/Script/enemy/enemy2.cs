@@ -1,38 +1,38 @@
 using UnityEngine;
 
-public class enemy2 : enemy
+public class enemy2 : CEnemy
 {
 
     protected override void Start()
     {
         base.Start();
-        Name = "花";
+        NAME = "花";
         HP = 12;
-        speed = speed_up = 0;//无法移动
-        cd_action = 4f;
+        Speed = UpSpeed = 0;//无法移动
+        ACTION_CD = 4f;
     }
     protected override void Act()
     {
-        if (actionReady)//总是处于战斗状态
+        if (b_ActionReady)//总是处于战斗状态
         {
-            hasAttacked = false;
-            actionIng = true;
-            actionReady = false;
-            Invoke(nameof(EndAction), t_action);
-            Invoke(nameof(ResetAction), cd_action);
+            b_HasAttacked = false;
+            b_ActionIng = true;
+            b_ActionReady = false;
+            Invoke(nameof(EndAction), ACTION_TIME);
+            Invoke(nameof(ResetAction), ACTION_CD);
         }
-        else if (actionIng)
+        else if (b_ActionIng)
         {
             DoAct();
-            count_action += Time.fixedDeltaTime;
+            t_Action += Time.fixedDeltaTime;
         }
     }
     protected override void DoAct()
     {
         base.DoAct();
-        if (count_action > 1f&&!hasAttacked&&alive)
+        if (t_Action > 1f&&!b_HasAttacked&&b_Alive)
         {
-            hasAttacked = true;
+            b_HasAttacked = true;
             GenerateDanmaku();
         }
     }
@@ -40,7 +40,7 @@ public class enemy2 : enemy
     {
         for(int i=0;i<5;i++)
         {
-            angle = Random.Range(0f, 360f);
+            m_Angle = Random.Range(0f, 360f);
             base.GenerateDanmaku();
         }
     }

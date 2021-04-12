@@ -1,17 +1,15 @@
 using UnityEngine;
-public class bullet5 : bullet
+public class bullet5 : CBullet
 {
-    
     void Start()
     {
-        penetrating = true;
-        damage = 3;
-        criticalDamage = 8;
+        b_Penetrating = true;
+        Damage = 3;
+        CriticalDamage = 8;
     }
-
     public void DamageUp(float rate)
     {
-        damage = (int)(rate * damage);
-        criticalDamage = (int)(rate * criticalDamage);
+        Damage = (int)(rate * Damage);
+        CriticalDamage = (int)(rate * CriticalDamage);
     }
 }

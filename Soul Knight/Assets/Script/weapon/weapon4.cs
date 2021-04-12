@@ -1,24 +1,25 @@
 using UnityEngine;
+using static CAudioController;
 
-public class weapon4 : weapon
+public class weapon4 : CWeapon
 {
     public Vector3 extraOffset;
     protected override void Start()
     {
         base.Start();
-        text = "雪狐 土豪金";
-        cd_shoot = 250;
-        cost = 3;
-        deflectLevel = 0f;
-        fx_weapon = scene.FindAudio("fx_weapon4");
+        INFO = "雪狐 土豪金";
+        SHOOT_CD = 250;
+        COST = 3;
+        m_DeflectLevel = 0f;
+        fx_Weapon = "fx_weapon4";
     }
     protected override void GenerateBullet()
     {
-        extraOffset = scene.Angle2Direction(angle + 90f) * 0.5f;
+        extraOffset = CSceneManager.Angle2Direction(angle + 90f) * 0.5f;
         base.GenerateBullet();
         base.GenerateBullet();
-        tempBullet.transform.position += extraOffset;
+        TempBullet.transform.position += extraOffset;
         base.GenerateBullet();
-        tempBullet.transform.position -= extraOffset;
+        TempBullet.transform.position -= extraOffset;
     }
 }

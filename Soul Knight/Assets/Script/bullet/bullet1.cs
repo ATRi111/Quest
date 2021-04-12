@@ -1,11 +1,11 @@
 using UnityEngine;
-public class bullet1 : bullet
+public class bullet1 : CBullet
 {
     const float rotateSpeed=10f;
     void Start()
     {
-        damage = 4;
-        criticalDamage = 8;
+        Damage = 4;
+        CriticalDamage = 8;
     }
 
     private void FixedUpdate()

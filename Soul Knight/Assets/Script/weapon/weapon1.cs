@@ -1,15 +1,16 @@
 using UnityEngine;
+using static CAudioController;
 
-public class weapon1 : weapon
+public class weapon1 : CWeapon
 {
     protected override void Start()
     {
         base.Start();
-        text = "ö±µ¯³å·æÇ¹";
-        cd_shoot = 500;
-        cost = 2;
-        deflectLevel = 10f;
-        fx_weapon = scene.FindAudio("fx_weapon1");
+        INFO = "ö±µ¯³å·æÇ¹";
+        SHOOT_CD = 500;
+        COST = 2;
+        m_DeflectLevel = 10f;
+        fx_Weapon = "fx_weapon1";
     }
     protected override void GenerateBullet()
     {

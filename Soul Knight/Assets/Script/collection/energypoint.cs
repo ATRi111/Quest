@@ -27,7 +27,7 @@ public class energypoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.GetComponent<player>().CostEnergy(-energy);
+            player.GetComponent<CPlayer>().CostEnergy(-energy);
             Destroy(this.gameObject);
         }
     }

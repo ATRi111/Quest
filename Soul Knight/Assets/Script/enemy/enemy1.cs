@@ -1,29 +1,29 @@
 using UnityEngine;
 
-public class enemy1 : enemy
+public class enemy1 : CEnemy
 {
     protected override void Start()
     {
         base.Start();
-        Name = "哥布林";
+        NAME = "哥布林";
         HP = 16;
     }
 
     protected override void DoAct()
     {
         base.DoAct();
-        if (count_action > 1f&&!hasAttacked&&alive)
+        if (t_Action > 1f&&!b_HasAttacked&&b_Alive)
         {
-            hasAttacked = true;
+            b_HasAttacked = true;
             GenerateDanmaku();
         }
     }
     protected override void GenerateDanmaku()
     {
         base.GenerateDanmaku();
-        angle += 15f;
+        m_Angle += 15f;
         base.GenerateDanmaku();
-        angle -= 30f;
+        m_Angle -= 30f;
         base.GenerateDanmaku();
     }
 }

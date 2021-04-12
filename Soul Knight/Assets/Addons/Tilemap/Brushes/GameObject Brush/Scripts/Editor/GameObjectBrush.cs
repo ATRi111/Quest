@@ -56,7 +56,8 @@ namespace UnityEditor
 			BoxFill(gridLayout, brushTarget, bounds);
 		}
 
-		private void PaintCell(GridLayout grid, Vector3Int position, Transform parent, BrushCell cell)
+        [Obsolete]
+        private void PaintCell(GridLayout grid, Vector3Int position, Transform parent, BrushCell cell)
 		{
 			if (cell.gameObject != null)
 			{
@@ -80,8 +81,11 @@ namespace UnityEditor
 			ClearSceneCell(grid, parent, position);
 		}
 
-		public override void BoxFill(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
-		{
+        [Obsolete]
+#pragma warning disable CS0809 // 过时成员重写未过时成员
+        public override void BoxFill(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
+#pragma warning restore CS0809 // 过时成员重写未过时成员
+        {
 			// Do not allow editing palettes
 			if (brushTarget.layer == 31)
 				return;
@@ -385,7 +389,8 @@ namespace UnityEditor
 			}
 		}
 
-		private static void SetSceneCell(GridLayout grid, Transform parent, Vector3Int position, GameObject go, Vector3 offset, Vector3 scale, Quaternion orientation)
+        [Obsolete]
+        private static void SetSceneCell(GridLayout grid, Transform parent, Vector3Int position, GameObject go, Vector3 offset, Vector3 scale, Quaternion orientation)
 		{
 			if (parent == null || go == null)
 				return;

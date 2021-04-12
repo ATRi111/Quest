@@ -1,9 +1,9 @@
-public class bullet2 : bullet
+public class bullet2 : CBullet
 {
     void Start()
     {
-        penetrating = true;
-        damage = 10;
-        criticalDamage = 30;
+        b_Penetrating = true;
+        Damage = 10;
+        CriticalDamage = 30;
     }
 }

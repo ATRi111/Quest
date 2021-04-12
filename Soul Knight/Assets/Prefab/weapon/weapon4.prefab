@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3905776765599357881}
   - component: {fileID: 4283147292691954546}
   - component: {fileID: 1825954536613825788}
-  - component: {fileID: 384846369375811542}
   m_Layer: 14
   m_Name: weapon4
   m_TagString: Weapon
@@ -124,25 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d2561936a14a54da57c0fe0d764c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0.2, y: -0.2, z: 0}
-  count_shoot: 0
-  isEquipped: 0
+  m_Offset: {x: 0.2, y: -0.2, z: 0}
+  t_Shoot: 0
+  b_Equipped: 0
   angle: 0
-  direction: {x: 0, y: 0}
-  bullet: {fileID: 1954006472136769165, guid: 94b21f64937ade4418f33d36f431f5c6, type: 3}
-  counter: 0
-  testMode: 0
+  m_Direction: {x: 0, y: 0}
+  Bullet: {fileID: 1954006472136769165, guid: 94b21f64937ade4418f33d36f431f5c6, type: 3}
   extraOffset: {x: 0, y: 0.2, z: 0}
---- !u!114 &384846369375811542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3905776765599357880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a44f69da95ccb554ab54b1a70a806c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0

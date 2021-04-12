@@ -1,8 +1,8 @@
-public class bullet4 : bullet
+public class bullet4 : CBullet
 {
     void Start()
     {
-        damage = 3;
-        criticalDamage = 7;
+        Damage = 3;
+        CriticalDamage = 7;
     }
 }

@@ -120,21 +120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae94562aa8892746a8c79a6e085f947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  armor: 0
-  energy: 0
-  coin: 0
-  skillPressed: 0
-  pickPressed: 0
-  skillOn: 0
-  skillReady: 1
-  anim: {fileID: 0}
-  Aweapon: {fileID: 0}
-  Bweapon: {fileID: 0}
-  counter: 0
-  testMode: 0
-  test: 
-  mixer: {fileID: 24100000, guid: 8410b94fcfb56cd47bad69f57375901c, type: 2}
+  v_Direction: {x: 0, y: 0}
+  t_SpeedUp: 0
+  t_LastAttack: 0
+  b_PickPressed: 0
+  b_SkillReady: 1
+  b_SkillPressed: 0
+  b_SkillOn: 0
+  AWeapon: {fileID: 0}
+  BWeapon: {fileID: 0}
+  Mixer: {fileID: 24100000, guid: 8410b94fcfb56cd47bad69f57375901c, type: 2}
 --- !u!95 &5508597242895961650
 Animator:
   serializedVersion: 3

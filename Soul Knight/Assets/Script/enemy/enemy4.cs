@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class enemy4 : enemy
+public class enemy4 : CEnemy
 {
     protected override void Start()
     {
         base.Start();
-        Name = "¥Û“∞÷Ì";
-        speed = 3f;
-        speed_up = 4f;
+        NAME = "¥Û“∞÷Ì";
+        Speed = 3f;
+        UpSpeed = 4f;
         HP = 20;
-        damage = 3;
-        sight = 6f;
+        Damage = 3;
+        VISION = 6f;
     }
 }
