@@ -1,0 +1,17 @@
+{
+  "weapondatas": 
+  [
+    {
+      "INFO": "Ñ©ºü",
+      "SHOOT_CD": 250,
+      "COST": 0,
+      "SHOOT_SPEED": 20
+    },
+    {
+      "INFO": "ö±µ¯³å·æÇ¹",
+      "SHOOT_CD": 500,
+      "COST": 2,
+      "SHOOT_SPEED": 20
+    }
+  ]
+}
