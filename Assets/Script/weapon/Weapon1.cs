@@ -15,9 +15,9 @@ public class Weapon1 : CWeapon
     protected override void GenerateBullet()
     {
         base.GenerateBullet();
-        angle += 10f;
+        m_Angle += 10f;
         base.GenerateBullet();
-        angle -= 20f; 
+        m_Angle -= 20f; 
         base.GenerateBullet();
     }
 }

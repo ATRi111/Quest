@@ -16,7 +16,7 @@ public class Weapon4 : CWeapon
     }
     protected override void GenerateBullet()
     {
-        extraOffset = CTool.Angle2Direction(angle + 90f) * 0.5f;
+        extraOffset = CTool.Angle2Direction(m_Angle + 90f) * 0.5f;
         base.GenerateBullet();
         base.GenerateBullet();
         TempBullet.transform.position += extraOffset;

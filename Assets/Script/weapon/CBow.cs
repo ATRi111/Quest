@@ -22,10 +22,10 @@ public class CBow : CWeapon
     {
         if (this.gameObject.activeSelf)
         {
-            b_BhootPressed = Input.GetMouseButton(0);
+            b_ShootPressed = Input.GetMouseButton(0);
 
             if (t_Shoot > 0f) t_Shoot -= _DELTATIME;
-            else if (b_BhootPressed)
+            else if (b_ShootPressed)
             {
                 if (Player.GetComponent<CPlayer>().TellEnergy() >= COST && !b_Tightning)    //开始蓄力
                 {
@@ -45,7 +45,7 @@ public class CBow : CWeapon
                     TempBullet.transform.rotation = transform.localRotation;
                 }
             }
-            else if (!b_BhootPressed && b_Tightning) Release(); //发射
+            else if (!b_ShootPressed && b_Tightning) Release(); //发射
             m_Animator.SetBool("tight", b_Tightning);
         }
     }
