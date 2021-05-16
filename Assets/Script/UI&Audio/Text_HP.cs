@@ -7,15 +7,18 @@ public class Text_HP:MonoBehaviour
     private Text text;
     protected void Awake()
     {
-        CEventSystem.Instance.AddLisenter<int,int>(EEventType.HPChanged,OnEvent);
         text = GetComponent<Text>();
+    }
+    private void OnEnable()
+    {
+        CEventSystem.Instance.AddLisenter<int, int>(EEventType.HPChanged, OnEvent);
+    }
+    private void OnDisable()
+    {
+        CEventSystem.Instance.RemoveListener<int, int>(EEventType.HPChanged, OnEvent);
     }
     protected void OnEvent(int maxvalue, int value)
     {
         text.text = maxvalue.ToString() + "/" + value.ToString();
-    }
-    protected void OnDestroy()
-    {
-        CEventSystem.Instance.RemoveListener<int,int>(EEventType.HPChanged,OnEvent);
     }
 }
