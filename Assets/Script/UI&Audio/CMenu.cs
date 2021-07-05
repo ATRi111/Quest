@@ -68,7 +68,7 @@ public class CMenu : CSigleton<CMenu>
     }
     public void CloseText() => Panel.SetActive(false);
 
-    public void SetmainVolume(float volume) => Mixer.SetFloat("main", -volume * volume / 125f);
+    public void SetmainVolume(float volume) => Mixer.SetFloat("master", -volume * volume / 125f);
     public void SetfxVolume(float volume) => Mixer.SetFloat("fx", -volume * volume / 125f);
     public void SetbgmVolume(float volume) => Mixer.SetFloat("bgm", -volume * volume / 125f);
     public void Mute() => Mixer.SetFloat("main", -80);
